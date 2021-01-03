@@ -33,7 +33,7 @@ android {
         jvmTarget = '1.8'
         freeCompilerArgs = ["-Xallow-result-return-type"]
     }
-    
+
 }
 
 dependencies {
@@ -42,6 +42,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    implementation 'joda-time:joda-time:2.10.9'
 
     //Navigation Component
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
