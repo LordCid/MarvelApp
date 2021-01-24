@@ -2,6 +2,7 @@ package com.example.marvelapp.data
 
 import com.example.marvelapp.BASE_URL
 import com.example.marvelapp.data.model.MarvelCharacterNetworkModel
+import com.example.marvelapp.data.model.MarvelDataNetWorkResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -19,7 +20,7 @@ interface ApiService {
         @Query("ts") timeStamp: Long,
         @Query("apikey") apikey: String,
         @Query("hash") hash: String,
-    ): Call<List<MarvelCharacterNetworkModel>>
+    ): Call<MarvelDataNetWorkResponse>
 
     @GET("characters")
     fun getCharacterListSimple(): Call<List<MarvelCharacterNetworkModel>>
