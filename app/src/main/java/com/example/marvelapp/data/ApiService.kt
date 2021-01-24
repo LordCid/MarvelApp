@@ -22,8 +22,6 @@ interface ApiService {
         @Query("hash") hash: String,
     ): Call<MarvelDataNetWorkResponse>
 
-    @GET("characters")
-    fun getCharacterListSimple(): Call<List<MarvelCharacterNetworkModel>>
 
     @GET("characters/{characterId}")
     fun getCharacter(

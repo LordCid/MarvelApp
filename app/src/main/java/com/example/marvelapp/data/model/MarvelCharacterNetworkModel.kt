@@ -8,5 +8,6 @@ data class MarvelCharacterNetworkModel(
     @SerializedName("description") val description: String,
     @SerializedName("modified") val modified: String,
     @SerializedName("resourceURI") val resourceURI: String,
-    @SerializedName("thumbnail") val thumbnail: CharacterImage,
-    )
+    @SerializedName("thumbnail") val thumbnail: MarvelCharacterNetworkImage,
+    @SerializedName("urls") val urls: List<MarvelCharacterNetworkURLS>
+)
