@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.marvelapp.data.ApiService
-import com.example.marvelapp.domain.Utiles
+import com.example.marvelapp.domain.UtilitiesImpl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
     }
 
     private fun testApi(){
-        val utiles = Utiles()
+        val utiles = UtilitiesImpl()
         launch {
             val result = runCatching {
                 ApiService.create().getCharacterList(
