@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MarvelApp</string>
+    <string name="no_characters_label">No heroes present</string>
 </resources>

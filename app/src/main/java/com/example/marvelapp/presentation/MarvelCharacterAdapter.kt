@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelapp.R
 import com.example.marvelapp.domain.common.ImagesLoader
 import com.example.marvelapp.domain.model.MarvelCharacter
+import kotlinx.android.synthetic.main.item_list.view.*
 import java.text.DateFormat
 import kotlin.properties.Delegates
 

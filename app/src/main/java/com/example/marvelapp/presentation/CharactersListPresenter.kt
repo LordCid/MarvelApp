@@ -3,8 +3,9 @@ package com.example.marvelapp.presentation
 import com.example.marvelapp.domain.ResultState
 import com.example.marvelapp.domain.usecase.GetCharactersUseCase
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
-class CharactersListPresenter(
+class CharactersListPresenter @Inject constructor(
     private val view: CharacterListContract.View,
     private val getCharactersUseCase: GetCharactersUseCase,
     private val ioDispatcher: CoroutineDispatcher

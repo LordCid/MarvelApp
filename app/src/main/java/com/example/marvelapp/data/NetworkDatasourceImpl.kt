@@ -6,9 +6,10 @@ import com.example.marvelapp.domain.Utilities
 import com.example.marvelapp.domain.model.MarvelCharacter
 import com.example.marvelapp.domain.toDomain
 import retrofit2.awaitResponse
+import javax.inject.Inject
 import kotlin.Result.Companion.failure
 
-class NetworkDatasourceImpl(
+class NetworkDatasourceImpl @Inject constructor(
     private val apiService: ApiService,
     private val utilitiesImpl: Utilities
 ) : NetworkDatasource {

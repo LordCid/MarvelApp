@@ -4,8 +4,9 @@ import com.example.marvelapp.PUBLIC_KEY
 import com.example.marvelapp.PRIVATE_KEY
 import java.math.BigInteger
 import java.security.MessageDigest
+import javax.inject.Inject
 
-class UtilitiesImpl: Utilities {
+class UtilitiesImpl @Inject constructor(): Utilities {
 
     override fun getHash(): String {
         return run {
