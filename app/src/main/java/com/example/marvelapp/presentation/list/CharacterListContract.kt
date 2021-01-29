@@ -1,4 +1,4 @@
-package com.example.marvelapp.presentation
+package com.example.marvelapp.presentation.list
 
 import com.example.marvelapp.domain.model.MarvelCharacter
 

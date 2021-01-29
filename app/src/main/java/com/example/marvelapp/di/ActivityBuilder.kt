@@ -1,7 +1,7 @@
 package com.example.marvelapp.di
 
 
-import com.example.marvelapp.presentation.CharacterListActivity
+import com.example.marvelapp.presentation.list.CharacterListActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

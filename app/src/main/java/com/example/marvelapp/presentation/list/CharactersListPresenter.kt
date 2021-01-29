@@ -1,4 +1,4 @@
-package com.example.marvelapp.presentation
+package com.example.marvelapp.presentation.list
 
 import com.example.marvelapp.domain.ResultState
 import com.example.marvelapp.domain.usecase.GetCharactersUseCase

@@ -1,8 +1,8 @@
 package com.example.marvelapp.di
 
-import com.example.marvelapp.presentation.CharacterListActivity
-import com.example.marvelapp.presentation.CharacterListContract
-import com.example.marvelapp.presentation.CharactersListPresenter
+import com.example.marvelapp.presentation.list.CharacterListActivity
+import com.example.marvelapp.presentation.list.CharacterListContract
+import com.example.marvelapp.presentation.list.CharactersListPresenter
 import dagger.Binds
 import dagger.Module
 

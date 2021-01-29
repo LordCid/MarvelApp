@@ -1,9 +1,6 @@
 package com.example.marvelapp
 
-import com.example.marvelapp.data.model.MarvelCharacterNetworkImage
-import com.example.marvelapp.data.model.MarvelCharacterNetworkModel
-import com.example.marvelapp.data.model.MarvelCharacterResults
-import com.example.marvelapp.data.model.MarvelDataNetWorkResponse
+import com.example.marvelapp.data.model.*
 import com.example.marvelapp.domain.model.MarvelCharacter
 
 val networkMarvelCharacter = MarvelCharacterNetworkModel(
@@ -16,8 +13,8 @@ val networkMarvelCharacter = MarvelCharacterNetworkModel(
     urls = emptyList()
 )
 
-val concreteNetworkModelResponse = MarvelDataNetWorkResponse(
-    data = MarvelCharacterResults(
+val concreteNetworkDataWrapperResponse = MarvelNetWorkCharacterListDataWrapper(
+    data = MarvelCharacterListData(
         limit = 3,
         total = 25,
         count = 20,
@@ -40,8 +37,8 @@ val otherNetworkMarvelCharacter = MarvelCharacterNetworkModel(
 )
 
 
-val concreteOtherNetworkModel = MarvelDataNetWorkResponse(
-    data = MarvelCharacterResults(
+val concreteOtherNetworkDataWrapperResponse = MarvelNetWorkCharacterListDataWrapper(
+    data = MarvelCharacterListData(
         limit = 3,
         total = 25,
         count = 20,
@@ -70,6 +67,33 @@ val otherMarvelCharacter = MarvelCharacter(
     id = 2,
     name = "OtherName",
     description = "other description",
+    modified = "modified",
+    resourceURI = "uri",
+    thumbnail = "someUrl.extension",
+    links = emptyList()
+)
+
+fun getNetworkDataWrapperByCharId(id: Long) = MarvelNetWorkCharacterDataWrapper(
+    data = MarvelCharacterData(
+        limit = 3,
+        total = 25,
+        count = 20,
+        character = MarvelCharacterNetworkModel(
+            id = id,
+            name = "Name",
+            description = "description",
+            modified = "modified",
+            resourceURI = "uri",
+            thumbnail = MarvelCharacterNetworkImage(path = "someUrl", extension = "extension"),
+            urls = emptyList()
+        )
+    )
+)
+
+fun getCharactertById(id: Long) = MarvelCharacter(
+    id = id,
+    name = "Name",
+    description = "description",
     modified = "modified",
     resourceURI = "uri",
     thumbnail = "someUrl.extension",

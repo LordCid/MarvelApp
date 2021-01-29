@@ -1,7 +1,7 @@
 package com.example.marvelapp.data
 
 import com.example.marvelapp.*
-import com.example.marvelapp.data.model.MarvelDataNetWorkResponse
+import com.example.marvelapp.data.model.MarvelNetWorkCharacterListDataWrapper
 import com.example.marvelapp.domain.ResultState
 import com.example.marvelapp.domain.Utilities
 import com.nhaarman.mockitokotlin2.given
@@ -33,7 +33,7 @@ class NetworkDatasourceTest {
     @Test
     fun `When get characters, should invoke proper apiService function`() {
         runBlocking {
-            givenNetworkGetGroupListResponseOK(concreteNetworkModelResponse)
+            givenNetworkGetCharacterListResponseOK(concreteNetworkDataWrapperResponse)
 
             sut.getMarvelCharacters()
 
@@ -45,7 +45,7 @@ class NetworkDatasourceTest {
     fun `Given Success response, when get character list, then domain result success list model is returned`() {
         runBlocking {
             val expected = listOf(marvelCharacter, marvelCharacter, marvelCharacter)
-            givenNetworkGetGroupListResponseOK(concreteNetworkModelResponse)
+            givenNetworkGetCharacterListResponseOK(concreteNetworkDataWrapperResponse)
 
             val actual = sut.getMarvelCharacters()
 
@@ -57,7 +57,7 @@ class NetworkDatasourceTest {
     fun `Given Success response, when get OTHER character list, then domain result success list model is returned`() {
         runBlocking {
             val expected = listOf(otherMarvelCharacter, otherMarvelCharacter, otherMarvelCharacter)
-            givenNetworkGetGroupListResponseOK(concreteOtherNetworkModel)
+            givenNetworkGetCharacterListResponseOK(concreteOtherNetworkDataWrapperResponse)
 
             val actual = sut.getMarvelCharacters()
 
@@ -69,7 +69,7 @@ class NetworkDatasourceTest {
     @Test
     fun `Given Failure response, when get group list, then return Result failure`() {
         runBlocking {
-            givenNetworkGetGroupListResponseKO()
+            givenNetworkGetCharacterListResponseKO()
 
             val result = sut.getMarvelCharacters()
 
@@ -77,27 +77,89 @@ class NetworkDatasourceTest {
         }
     }
 
-    private fun stubUtilitiesFunctions(){
+    @Test
+    fun `Given success result, when getting character by id, mapped domain result List is returned`() {
+        runBlocking {
+            val someId = 12345L
+            val expected = getCharactertById(someId)
+            givenNetworkGetCharacterByIdResponseOK(someId)
+
+            val actual = sut.getMarvelCharacter(someId)
+
+
+            assertEquals(expected, (actual as ResultState.Success).data)
+        }
+    }
+
+    @Test
+    fun `Given OTHER success result, when getting character by id, mapped domain result List is returned`() {
+        runBlocking {
+            val someId = 4567L
+            val expected = getCharactertById(someId)
+            givenNetworkGetCharacterByIdResponseOK(someId)
+
+            val actual = sut.getMarvelCharacter(someId)
+
+
+            assertEquals(expected, (actual as ResultState.Success).data)
+        }
+    }
+
+    @Test
+    fun `Should return failure when get character by Id response is Error`() {
+        runBlocking {
+            val someId = 12345L
+            givenNetworkGetCharacterByIdResponseKO(someId)
+
+            val result = sut.getMarvelCharacter(someId)
+
+            assert(result is ResultState.Error)
+        }
+    }
+
+    private fun stubUtilitiesFunctions() {
         given(utilities.getTimeStamp()).willReturn(timeStamp)
         given(utilities.getHash()).willReturn(hash)
     }
 
-    private fun givenNetworkGetGroupListResponseOK(responseData: MarvelDataNetWorkResponse) {
+    private fun givenNetworkGetCharacterListResponseOK(responseCharacterListData: MarvelNetWorkCharacterListDataWrapper) {
         given(
             apiService.getCharacterList(
                 timeStamp = anyLong(),
                 apikey = anyString(),
                 hash = anyString()
             )
-        ).willReturn(Calls.response(responseData))
+        ).willReturn(Calls.response(responseCharacterListData))
     }
 
 
-    private fun givenNetworkGetGroupListResponseKO() {
-        given(apiService.getCharacterList(
+    private fun givenNetworkGetCharacterListResponseKO() {
+        given(
+            apiService.getCharacterList(
+                timeStamp = anyLong(),
+                apikey = anyString(),
+                hash = anyString()
+            )
+        ).willReturn(Calls.failure(mock()))
+    }
+
+    private fun givenNetworkGetCharacterByIdResponseOK(someId: Long) {
+        given(
+            apiService.getCharacter(
+                timeStamp = anyLong(),
+                apikey = anyString(),
+                hash = anyString(),
+                id = anyLong()
+            )
+        ).willReturn(Calls.response(getNetworkDataWrapperByCharId(someId)))
+    }
+
+    private fun givenNetworkGetCharacterByIdResponseKO(someId: Long) {
+        given( apiService.getCharacter(
             timeStamp = anyLong(),
             apikey = anyString(),
-            hash = anyString()
-        )).willReturn(Calls.failure(mock()))
+            hash = anyString(),
+            id = anyLong()
+        )).willReturn(Calls.failure(mock<Exception>()))
     }
 }

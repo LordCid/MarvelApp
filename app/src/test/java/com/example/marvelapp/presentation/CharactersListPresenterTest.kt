@@ -5,6 +5,8 @@ import com.example.marvelapp.domain.model.MarvelCharacter
 import com.example.marvelapp.domain.usecase.GetCharactersUseCase
 import com.example.marvelapp.marvelCharacter
 import com.example.marvelapp.otherMarvelCharacter
+import com.example.marvelapp.presentation.list.CharacterListContract
+import com.example.marvelapp.presentation.list.CharactersListPresenter
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +18,6 @@ import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
 
-import org.junit.Assert.*
 import org.junit.Test
 import org.mockito.Mockito
 

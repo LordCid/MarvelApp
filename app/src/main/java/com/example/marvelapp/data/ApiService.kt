@@ -2,7 +2,8 @@ package com.example.marvelapp.data
 
 import com.example.marvelapp.BASE_URL
 import com.example.marvelapp.data.model.MarvelCharacterNetworkModel
-import com.example.marvelapp.data.model.MarvelDataNetWorkResponse
+import com.example.marvelapp.data.model.MarvelNetWorkCharacterDataWrapper
+import com.example.marvelapp.data.model.MarvelNetWorkCharacterListDataWrapper
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -20,7 +21,7 @@ interface ApiService {
         @Query("ts") timeStamp: Long,
         @Query("apikey") apikey: String,
         @Query("hash") hash: String,
-    ): Call<MarvelDataNetWorkResponse>
+    ): Call<MarvelNetWorkCharacterListDataWrapper>
 
 
     @GET("characters/{characterId}")
@@ -28,8 +29,8 @@ interface ApiService {
         @Query("ts") timeStamp: Long,
         @Query("apikey") apikey: String,
         @Query("hash") hash: String,
-        @Path("characterId") id: Int
-    ): Call<MarvelCharacterNetworkModel>
+        @Path("characterId") id: Long
+    ): Call<MarvelNetWorkCharacterDataWrapper>
 
     companion object {
 

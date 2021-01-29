@@ -22,10 +22,30 @@ class NetworkDatasourceImpl @Inject constructor(
             ).awaitResponse()
         }.fold(
             onSuccess = {
-                val resultList = it.body()?.let { response ->
-                    response.toDomain()
-                }.orEmpty()
+                val resultList = it.body()?.toDomain().orEmpty()
                 ResultState.Success(resultList)
+            },
+            onFailure = { ResultState.Error }
+        )
+    }
+
+    override suspend fun getMarvelCharacter(id: Long): ResultState<MarvelCharacter> {
+        return runCatching {
+            apiService.getCharacter(
+                timeStamp = utilitiesImpl.getTimeStamp(),
+                apikey = PUBLIC_KEY,
+                hash = utilitiesImpl.getHash(),
+                id = id
+            ).awaitResponse()
+        }.fold(
+            onSuccess = {
+                val response = it.body()
+                if (response != null) {
+                    val result = response.toDomain()
+                    ResultState.Success(result)
+                } else {
+                    ResultState.Error
+                }
             },
             onFailure = { ResultState.Error }
         )

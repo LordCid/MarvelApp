@@ -2,7 +2,7 @@ package com.example.marvelapp.domain.model
 
 
 data class MarvelCharacter(
-    val id: Int,
+    val id: Long,
     val name: String,
     val description: String,
     val modified: String,

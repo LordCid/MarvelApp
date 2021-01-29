@@ -1,4 +1,4 @@
-package com.example.marvelapp.presentation
+package com.example.marvelapp.presentation.list
 
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +22,7 @@ class MarvelCharacterAdapter(
         }
     }
 
-    var onClickItem: (Int) -> Unit = {}
+    var onClickItem: (Long) -> Unit = {}
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListItemViewHolder {
@@ -43,13 +43,13 @@ class ListItemViewHolder(
     private val imageLoader: ImagesLoader,
     private val dateFormat: DateFormat,
     itemView: View,
-    private val onClick: (Int) -> Unit
+    private val onClick: (Long) -> Unit
 ) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(character: MarvelCharacter){
         with(itemView){
             setOnClickListener { onClick(character.id) }
-            imageLoader.loadImage(character.thumbnail, group_container)
+            imageLoader.loadImage(character.thumbnail, character_container)
             title_tv.text = character.name
             date_tv.text = character.modified
             description_short_tv.text = character.description

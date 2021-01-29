@@ -5,4 +5,5 @@ import com.example.marvelapp.domain.model.MarvelCharacter
 
 interface NetworkDatasource {
     suspend fun getMarvelCharacters(): ResultState<List<MarvelCharacter>>
+    suspend fun getMarvelCharacter(id: Long): ResultState<MarvelCharacter>
 }
