@@ -2,6 +2,7 @@ package com.example.marvelapp.data
 
 import com.example.marvelapp.*
 import com.example.marvelapp.data.model.MarvelDataNetWorkResponse
+import com.example.marvelapp.domain.ResultState
 import com.example.marvelapp.domain.Utilities
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
@@ -34,7 +35,7 @@ class NetworkDatasourceTest {
         runBlocking {
             givenNetworkGetGroupListResponseOK(concreteNetworkModelResponse)
 
-            sut.getCharacters()
+            sut.getMarvelCharacters()
 
             verify(apiService).getCharacterList(timeStamp, PUBLIC_KEY, hash)
         }
@@ -46,9 +47,9 @@ class NetworkDatasourceTest {
             val expected = listOf(marvelCharacter, marvelCharacter, marvelCharacter)
             givenNetworkGetGroupListResponseOK(concreteNetworkModelResponse)
 
-            val actual = sut.getCharacters()
+            val actual = sut.getMarvelCharacters()
 
-            assertEquals(Result.success(expected), actual)
+            assertEquals(expected, (actual as ResultState.Success).data)
         }
     }
 
@@ -58,9 +59,9 @@ class NetworkDatasourceTest {
             val expected = listOf(otherMarvelCharacter, otherMarvelCharacter, otherMarvelCharacter)
             givenNetworkGetGroupListResponseOK(concreteOtherNetworkModel)
 
-            val actual = sut.getCharacters()
+            val actual = sut.getMarvelCharacters()
 
-            assertEquals(Result.success(expected), actual)
+            assertEquals(expected, (actual as ResultState.Success).data)
         }
     }
 
@@ -70,9 +71,9 @@ class NetworkDatasourceTest {
         runBlocking {
             givenNetworkGetGroupListResponseKO()
 
-            val result = sut.getCharacters()
+            val result = sut.getMarvelCharacters()
 
-            assert(result.isFailure)
+            assert(result is ResultState.Error)
         }
     }
 

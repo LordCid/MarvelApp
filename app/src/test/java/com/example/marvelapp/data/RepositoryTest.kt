@@ -1,5 +1,6 @@
 package com.example.marvelapp.data
 
+import com.example.marvelapp.domain.ResultState
 import com.example.marvelapp.domain.model.MarvelCharacter
 import com.example.marvelapp.marvelCharacter
 import com.nhaarman.mockitokotlin2.given
@@ -24,26 +25,14 @@ class RepositoryTest {
     @Test
     fun `Should invoke get character list in network data soruce and return its result`() {
         runBlocking {
-            val expected = Result.success(listOf(marvelCharacter))
-            given(networkDataSource.getCharacters()).willReturn(expected)
+            val expected = ResultState.Success(listOf(marvelCharacter))
+            given(networkDataSource.getMarvelCharacters()).willReturn(expected)
 
             val actual = sut.getCharacters()
 
-            verify(networkDataSource).getCharacters()
+            verify(networkDataSource).getMarvelCharacters()
             assertEquals(expected, actual)
         }
     }
 
-    @Test
-    fun `Gievn failed, should invoke get character list in network data soruce and return its result`() {
-        runBlocking {
-            val expected = Result.failure<List<MarvelCharacter>>(mock())
-            given(networkDataSource.getCharacters()).willReturn(expected)
-
-            val actual = sut.getCharacters()
-
-            verify(networkDataSource).getCharacters()
-            assertEquals(expected, actual)
-        }
-    }
 }
