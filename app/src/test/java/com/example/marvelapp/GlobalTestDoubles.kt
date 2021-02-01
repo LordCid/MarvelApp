@@ -13,8 +13,8 @@ val networkMarvelCharacter = MarvelCharacterNetworkModel(
     urls = emptyList()
 )
 
-val concreteNetworkDataWrapperResponse = MarvelNetWorkCharacterListDataWrapper(
-    data = MarvelCharacterListData(
+val concreteNetworkDataWrapperResponse = MarvelNetWorkCharacterDataWrapper(
+    data = MarvelCharacterData(
         limit = 3,
         total = 25,
         count = 20,
@@ -37,8 +37,8 @@ val otherNetworkMarvelCharacter = MarvelCharacterNetworkModel(
 )
 
 
-val concreteOtherNetworkDataWrapperResponse = MarvelNetWorkCharacterListDataWrapper(
-    data = MarvelCharacterListData(
+val concreteOtherNetworkDataWrapperResponse = MarvelNetWorkCharacterDataWrapper(
+    data = MarvelCharacterData(
         limit = 3,
         total = 25,
         count = 20,
@@ -49,7 +49,6 @@ val concreteOtherNetworkDataWrapperResponse = MarvelNetWorkCharacterListDataWrap
         )
     )
 )
-
 
 
 val marvelCharacter = MarvelCharacter(
@@ -78,14 +77,16 @@ fun getNetworkDataWrapperByCharId(id: Long) = MarvelNetWorkCharacterDataWrapper(
         limit = 3,
         total = 25,
         count = 20,
-        character = MarvelCharacterNetworkModel(
-            id = id,
-            name = "Name",
-            description = "description",
-            modified = "modified",
-            resourceURI = "uri",
-            thumbnail = MarvelCharacterNetworkImage(path = "someUrl", extension = "extension"),
-            urls = emptyList()
+        results = listOf(
+            MarvelCharacterNetworkModel(
+                id = id,
+                name = "Name",
+                description = "description",
+                modified = "modified",
+                resourceURI = "uri",
+                thumbnail = MarvelCharacterNetworkImage(path = "someUrl", extension = "extension"),
+                urls = emptyList()
+            )
         )
     )
 )

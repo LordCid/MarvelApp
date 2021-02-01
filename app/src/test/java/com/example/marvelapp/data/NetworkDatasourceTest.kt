@@ -1,7 +1,7 @@
 package com.example.marvelapp.data
 
 import com.example.marvelapp.*
-import com.example.marvelapp.data.model.MarvelNetWorkCharacterListDataWrapper
+import com.example.marvelapp.data.model.MarvelNetWorkCharacterDataWrapper
 import com.example.marvelapp.domain.ResultState
 import com.example.marvelapp.domain.Utilities
 import com.nhaarman.mockitokotlin2.given
@@ -78,11 +78,11 @@ class NetworkDatasourceTest {
     }
 
     @Test
-    fun `Given success result, when getting character by id, mapped domain result List is returned`() {
+    fun `Given success result, when getting character by id, mapped domain result is returned`() {
         runBlocking {
             val someId = 12345L
             val expected = getCharactertById(someId)
-            givenNetworkGetCharacterByIdResponseOK(someId)
+            givenNetworkGetCharacterByIdResponseOK(getNetworkDataWrapperByCharId(someId))
 
             val actual = sut.getMarvelCharacter(someId)
 
@@ -92,11 +92,11 @@ class NetworkDatasourceTest {
     }
 
     @Test
-    fun `Given OTHER success result, when getting character by id, mapped domain result List is returned`() {
+    fun `Given OTHER success result, when getting character by id, mapped domain result is returned`() {
         runBlocking {
             val someId = 4567L
             val expected = getCharactertById(someId)
-            givenNetworkGetCharacterByIdResponseOK(someId)
+            givenNetworkGetCharacterByIdResponseOK(getNetworkDataWrapperByCharId(someId))
 
             val actual = sut.getMarvelCharacter(someId)
 
@@ -109,7 +109,7 @@ class NetworkDatasourceTest {
     fun `Should return failure when get character by Id response is Error`() {
         runBlocking {
             val someId = 12345L
-            givenNetworkGetCharacterByIdResponseKO(someId)
+            givenNetworkGetCharacterByIdResponseKO()
 
             val result = sut.getMarvelCharacter(someId)
 
@@ -122,14 +122,14 @@ class NetworkDatasourceTest {
         given(utilities.getHash()).willReturn(hash)
     }
 
-    private fun givenNetworkGetCharacterListResponseOK(responseCharacterListData: MarvelNetWorkCharacterListDataWrapper) {
+    private fun givenNetworkGetCharacterListResponseOK(dataWrapper: MarvelNetWorkCharacterDataWrapper) {
         given(
             apiService.getCharacterList(
                 timeStamp = anyLong(),
                 apikey = anyString(),
                 hash = anyString()
             )
-        ).willReturn(Calls.response(responseCharacterListData))
+        ).willReturn(Calls.response(dataWrapper))
     }
 
 
@@ -143,23 +143,23 @@ class NetworkDatasourceTest {
         ).willReturn(Calls.failure(mock()))
     }
 
-    private fun givenNetworkGetCharacterByIdResponseOK(someId: Long) {
+    private fun givenNetworkGetCharacterByIdResponseOK(dataWrapper: MarvelNetWorkCharacterDataWrapper) {
         given(
             apiService.getCharacter(
+                id = anyLong(),
                 timeStamp = anyLong(),
                 apikey = anyString(),
-                hash = anyString(),
-                id = anyLong()
+                hash = anyString()
             )
-        ).willReturn(Calls.response(getNetworkDataWrapperByCharId(someId)))
+        ).willReturn(Calls.response(dataWrapper))
     }
 
-    private fun givenNetworkGetCharacterByIdResponseKO(someId: Long) {
+    private fun givenNetworkGetCharacterByIdResponseKO() {
         given( apiService.getCharacter(
+            id = anyLong(),
             timeStamp = anyLong(),
             apikey = anyString(),
             hash = anyString(),
-            id = anyLong()
         )).willReturn(Calls.failure(mock<Exception>()))
     }
 }

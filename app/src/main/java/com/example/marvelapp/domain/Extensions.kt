@@ -3,16 +3,16 @@ package com.example.marvelapp.domain
 import com.example.marvelapp.data.model.MarvelCharacterNetworkImage
 import com.example.marvelapp.data.model.MarvelCharacterNetworkModel
 import com.example.marvelapp.data.model.MarvelNetWorkCharacterDataWrapper
-import com.example.marvelapp.data.model.MarvelNetWorkCharacterListDataWrapper
 import com.example.marvelapp.domain.model.MarvelCharacter
 
-fun MarvelNetWorkCharacterListDataWrapper.toDomain(): List<MarvelCharacter> {
+fun MarvelNetWorkCharacterDataWrapper.toDomain(): List<MarvelCharacter> {
     return this.data.results.map { it.toMarvelCharacter() }
 }
 
-fun MarvelNetWorkCharacterDataWrapper.toDomain(): MarvelCharacter {
-    return this.data.character.toMarvelCharacter()
+fun MarvelNetWorkCharacterDataWrapper.getMarvelCharacter(): MarvelCharacter {
+    return this.data.results.first().toMarvelCharacter()
 }
+
 
 private fun MarvelCharacterNetworkModel.toMarvelCharacter() : MarvelCharacter {
     return MarvelCharacter(

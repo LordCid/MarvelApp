@@ -16,4 +16,7 @@ Quisque ut pellentesque nibh. Nam dictum rhoncus tristique. Sed scelerisque diam
 
 Sed enim dolor, pretium quis sem eget, dapibus laoreet enim. Vivamus et nibh non mi venenatis hendrerit. In porta velit sit amet efficitur blandit. Donec non porta eros. Sed blandit placerat ante, eu consectetur nunc ornare sit amet. Mauris nec quam ut tellus varius sagittis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed ac tincidunt mauris. Maecenas ac leo molestie, scelerisque metus in, mollis felis. Donec venenatis dui sit amet volutpat tincidunt. Nulla facilisi. Etiam suscipit ex non leo aliquet tempor. Pellentesque maximus aliquet laoreet. Pellentesque augue lectus, blandit id feugiat quis, ultrices id erat.
     </string>
+    <string name="download_error_message">Error al descargar</string>
+    <string name="ok_label">Aceptar</string>
+    <string name="downloading_title_dialog">Descargando</string>
 </resources>

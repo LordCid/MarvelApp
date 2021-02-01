@@ -12,8 +12,7 @@ class CharactersListPresenter @Inject constructor(
 ) : CharacterListContract.Presenter, CoroutineScope by MainScope() {
     override fun getCharacters() {
         launch {
-            val result = withContext(ioDispatcher){ getCharactersUseCase() }
-            when(result){
+            when(val result = withContext(ioDispatcher){ getCharactersUseCase() }){
                 is ResultState.Success -> view.showMarvelCharacters(result.data)
                 is ResultState.Error -> view.showError()
             }

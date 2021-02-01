@@ -1,8 +1,11 @@
 package com.example.marvelapp.data
 
+import android.util.Log
+import com.example.marvelapp.MARVEL_TAG
 import com.example.marvelapp.PUBLIC_KEY
 import com.example.marvelapp.domain.ResultState
 import com.example.marvelapp.domain.Utilities
+import com.example.marvelapp.domain.getMarvelCharacter
 import com.example.marvelapp.domain.model.MarvelCharacter
 import com.example.marvelapp.domain.toDomain
 import retrofit2.awaitResponse
@@ -32,22 +35,24 @@ class NetworkDatasourceImpl @Inject constructor(
     override suspend fun getMarvelCharacter(id: Long): ResultState<MarvelCharacter> {
         return runCatching {
             apiService.getCharacter(
+                id = id,
                 timeStamp = utilitiesImpl.getTimeStamp(),
                 apikey = PUBLIC_KEY,
                 hash = utilitiesImpl.getHash(),
-                id = id
             ).awaitResponse()
         }.fold(
             onSuccess = {
                 val response = it.body()
                 if (response != null) {
-                    val result = response.toDomain()
+                    val result = response.getMarvelCharacter()
                     ResultState.Success(result)
                 } else {
                     ResultState.Error
                 }
             },
-            onFailure = { ResultState.Error }
+            onFailure = {
+                ResultState.Error
+            }
         )
     }
 

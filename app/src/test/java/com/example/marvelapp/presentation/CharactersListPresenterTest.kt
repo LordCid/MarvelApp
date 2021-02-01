@@ -45,7 +45,7 @@ class CharactersListPresenterTest {
     }
 
     @Test
-    fun `Given product list get, it is shown into UI`() {
+    fun `Given character list get, it is shown into UI`() {
         runBlocking {
             val expectedList = listOf(marvelCharacter, marvelCharacter)
             givenSuccessResultWithValues(expectedList)
@@ -59,7 +59,7 @@ class CharactersListPresenterTest {
     }
 
     @Test
-    fun `Given OTHER product list get, it is shown into UI`() {
+    fun `Given OTHER character list get, it is shown into UI`() {
         runBlocking {
             val expectedList  = listOf(otherMarvelCharacter, otherMarvelCharacter)
             givenSuccessResultWithValues(expectedList)
@@ -73,7 +73,7 @@ class CharactersListPresenterTest {
     }
 
     @Test
-    fun `Given failure when getting product list, error is shown in the UI`() {
+    fun `Given failure when getting character list, error is shown in the UI`() {
         runBlocking {
             givenFailureResult()
 

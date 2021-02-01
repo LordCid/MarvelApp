@@ -11,6 +11,7 @@ import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
+import org.mockito.ArgumentMatchers.anyLong
 
 class RepositoryTest {
 
@@ -31,6 +32,20 @@ class RepositoryTest {
             val actual = sut.getCharacters()
 
             verify(networkDataSource).getMarvelCharacters()
+            assertEquals(expected, actual)
+        }
+    }
+
+    @Test
+    fun `Should invoke get character  in network data soruce and return its result`() {
+        runBlocking {
+            val someId = 123L
+            val expected = ResultState.Success(marvelCharacter)
+            given(networkDataSource.getMarvelCharacter(anyLong())).willReturn(expected)
+
+            val actual = sut.getCharacter(someId)
+
+            verify(networkDataSource).getMarvelCharacter(someId)
             assertEquals(expected, actual)
         }
     }

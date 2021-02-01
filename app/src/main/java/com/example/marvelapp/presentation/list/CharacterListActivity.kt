@@ -34,6 +34,7 @@ class CharacterListActivity : DaggerActivity(), CharacterListContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setUpUI()
+        showLoadingDialogFragment()
         presenter.getCharacters()
         setOnClickListeters()
     }
@@ -50,6 +51,11 @@ class CharacterListActivity : DaggerActivity(), CharacterListContract.View {
         no_results_tv.visibility = GONE
     }
 
+    private fun showLoadingDialogFragment() {
+        progressDialog.setMessage(getString(R.string.downloading_title_dialog))
+        progressDialog.show()
+    }
+
     private fun setOnClickListeters(){
         marvelCharactersAdapter.onClickItem = {
             val intent = Intent(this, CharacterDetailActivity::class.java)
@@ -59,10 +65,12 @@ class CharacterListActivity : DaggerActivity(), CharacterListContract.View {
     }
 
     override fun showMarvelCharacters(data: List<MarvelCharacter>) {
+        progressDialog.dismiss()
         marvelCharactersAdapter.list = data
     }
 
     override fun showError() {
+        progressDialog.dismiss()
         listView.visibility = GONE
         no_results_tv.visibility = VISIBLE
     }
