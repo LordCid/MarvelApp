@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelapp.ARG_CHARACTER_ID
@@ -13,11 +14,12 @@ import com.example.marvelapp.R
 import com.example.marvelapp.domain.common.ImagesLoader
 import com.example.marvelapp.domain.model.MarvelCharacter
 import com.example.marvelapp.presentation.detail.CharacterDetailActivity
+import dagger.android.AndroidInjection
 import dagger.android.DaggerActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class CharacterListActivity : DaggerActivity(), CharacterListContract.View {
+class CharacterListActivity : AppCompatActivity(), CharacterListContract.View {
 
     @Inject
     lateinit var imagesLoader: ImagesLoader
@@ -32,7 +34,9 @@ class CharacterListActivity : DaggerActivity(), CharacterListContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AndroidInjection.inject(this)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(findViewById(R.id.toolbar))
         setUpUI()
         showLoadingDialogFragment()
         presenter.getCharacters()

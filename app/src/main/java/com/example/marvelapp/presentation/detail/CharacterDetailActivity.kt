@@ -4,15 +4,17 @@ import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.appcompat.app.AppCompatActivity
 import com.example.marvelapp.ARG_CHARACTER_ID
 import com.example.marvelapp.R
 import com.example.marvelapp.domain.common.ImagesLoader
 import com.example.marvelapp.domain.model.MarvelCharacter
+import dagger.android.AndroidInjection
 import dagger.android.DaggerActivity
 import kotlinx.android.synthetic.main.activity_character_detail.*
 import javax.inject.Inject
 
-class CharacterDetailActivity : DaggerActivity(), CharacterDetailContract.View {
+class CharacterDetailActivity : AppCompatActivity(), CharacterDetailContract.View {
 
     private lateinit var progressDialog: ProgressDialog
 
@@ -26,7 +28,10 @@ class CharacterDetailActivity : DaggerActivity(), CharacterDetailContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AndroidInjection.inject(this)
         setContentView(R.layout.activity_character_detail)
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         progressDialog = ProgressDialog(this)
         showLoadingDialogFragment()
         presenter.getCharacter(id)

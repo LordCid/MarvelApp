@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MarvelApp</string>
     <string name="no_characters_label">No heroes present</string>
-    <string name="title_activity_character_detail">CharacterDetailActivity</string>
+    <string name="title_activity_character_detail">Character Detail</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.

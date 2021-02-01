@@ -6,14 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".presentation.list.CharacterListActivity">
 
+    <include
+        android:id="@+id/appbar"
+        layout="@layout/appbar"
+        app:layout_constraintBottom_toTopOf="@id/listView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
         tools:itemCount="5"
         tools:listitem="@layout/item_list" />
 
@@ -24,10 +31,10 @@
         android:text="@string/no_characters_label"
         android:textSize="@dimen/text_size_small"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

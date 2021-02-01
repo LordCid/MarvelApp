@@ -4,17 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".presentation.detail.CharacterDetailActivity">
 
+        <include
+            android:id="@+id/appbar"
+            layout="@layout/appbar"
+            app:layout_constraintBottom_toTopOf="@id/scroolView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroolView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread_inside">
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        app:layout_constraintVertical_chainStyle="packed">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/content"
@@ -23,8 +31,11 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/header"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                app:layout_constraintBottom_toTopOf="@id/description_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -69,13 +80,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="@dimen/text_size_large"
                 android:text="@string/download_error_message"
+                android:textSize="@dimen/text_size_large"
                 android:visibility="gone"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
