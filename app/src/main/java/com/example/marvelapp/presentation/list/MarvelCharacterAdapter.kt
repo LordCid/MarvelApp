@@ -9,11 +9,13 @@ import com.example.marvelapp.domain.common.ImagesLoader
 import com.example.marvelapp.domain.model.MarvelCharacter
 import kotlinx.android.synthetic.main.item_list.view.*
 import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.properties.Delegates
 
 class MarvelCharacterAdapter(
     private val imagesLoader: ImagesLoader,
-    private val dateFormat: DateFormat
+    private val dateFormat: SimpleDateFormat
 ) : RecyclerView.Adapter<ListItemViewHolder>() {
 
     var list: List<MarvelCharacter> by Delegates.observable(emptyList()) { _, oldValue, newValue ->
@@ -41,18 +43,22 @@ class MarvelCharacterAdapter(
 
 class ListItemViewHolder(
     private val imageLoader: ImagesLoader,
-    private val dateFormat: DateFormat,
+    private val dateFormat: SimpleDateFormat,
     itemView: View,
     private val onClick: (Long) -> Unit
 ) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(character: MarvelCharacter){
-        with(itemView){
+    fun bind(character: MarvelCharacter) {
+        with(itemView) {
             setOnClickListener { onClick(character.id) }
             imageLoader.loadImage(character.thumbnail, character_container)
             title_tv.text = character.name
-            date_tv.text = character.modified
+            date_tv.text = getDateFormated(character.modified)
             description_short_tv.text = character.description
         }
+    }
+
+    private fun getDateFormated(date: Date?): String {
+        return if (date != null) dateFormat.format(date) else ""
     }
 }

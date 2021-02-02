@@ -7,12 +7,13 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.marvelapp.ARG_CHARACTER_ID
 import com.example.marvelapp.R
 import com.example.marvelapp.domain.model.MarvelCharacter
 import com.example.marvelapp.presentation.common.BaseActivity
+import com.example.marvelapp.presentation.detail.ARG_CHARACTER_ID
 import com.example.marvelapp.presentation.detail.CharacterDetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 import javax.inject.Inject
 
 class CharacterListActivity : BaseActivity(), CharacterListContract.View {
@@ -33,8 +34,7 @@ class CharacterListActivity : BaseActivity(), CharacterListContract.View {
     }
 
     private fun setUpUI(){
-        val dateFormat = DateFormat.getDateFormat(this)
-        marvelCharactersAdapter = MarvelCharacterAdapter(imagesLoader, dateFormat)
+        marvelCharactersAdapter = MarvelCharacterAdapter(imagesLoader, simpleDateFormat)
         listView.apply {
             visibility = VISIBLE
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
@@ -63,5 +63,6 @@ class CharacterListActivity : BaseActivity(), CharacterListContract.View {
         listView.visibility = GONE
         no_results_tv.visibility = VISIBLE
     }
+
 
 }
