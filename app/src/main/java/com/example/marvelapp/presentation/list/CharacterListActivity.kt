@@ -13,6 +13,7 @@ import com.example.marvelapp.presentation.common.BaseActivity
 import com.example.marvelapp.presentation.detail.ARG_CHARACTER_ID
 import com.example.marvelapp.presentation.detail.CharacterDetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.appbar.*
 import java.util.*
 import javax.inject.Inject
 
@@ -41,6 +42,10 @@ class CharacterListActivity : BaseActivity(), CharacterListContract.View {
             this.adapter = marvelCharactersAdapter
         }
         no_results_tv.visibility = GONE
+        refresh_btn.apply {
+            visibility = VISIBLE
+            setOnClickListener { presenter.getCharacters() }
+        }
     }
 
 
