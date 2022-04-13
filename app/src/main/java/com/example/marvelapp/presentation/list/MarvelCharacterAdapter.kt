@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelapp.R
+import com.example.marvelapp.databinding.ItemListBinding
 import com.example.marvelapp.domain.common.ImagesLoader
 import com.example.marvelapp.domain.model.MarvelCharacter
 import kotlinx.android.synthetic.main.item_list.view.*
@@ -29,8 +30,8 @@ class MarvelCharacterAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListItemViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
-        val view: View = inflater.inflate(R.layout.item_list, parent, false)
-        return ListItemViewHolder(imagesLoader, dateFormat, view, onClickItem)
+        val bindingView = ItemListBinding.inflate(inflater, parent, false)
+        return ListItemViewHolder(imagesLoader, dateFormat, bindingView, onClickItem)
     }
 
     override fun onBindViewHolder(holder: ListItemViewHolder, position: Int) {
@@ -44,16 +45,16 @@ class MarvelCharacterAdapter(
 class ListItemViewHolder(
     private val imageLoader: ImagesLoader,
     private val dateFormat: SimpleDateFormat,
-    itemView: View,
+    private val bindingView: ItemListBinding,
     private val onClick: (Long) -> Unit
-) : RecyclerView.ViewHolder(itemView) {
+) : RecyclerView.ViewHolder(bindingView.root) {
 
     fun bind(character: MarvelCharacter) {
-        with(itemView) {
-            setOnClickListener { onClick(character.id) }
-            imageLoader.loadImage(character.thumbnail, character_container)
-            title_tv.text = character.name
-            date_tv.text = getDateFormated(character.modified)
+        with(bindingView) {
+            root.setOnClickListener { onClick(character.id) }
+            imageLoader.loadImage(character.thumbnail, characterContainer)
+            titleTv.text = character.name
+            dateTv.text = getDateFormated(character.modified)
         }
     }
 
