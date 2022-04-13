@@ -38,25 +38,7 @@ class CharacterDetailFragment : BaseFragment(), CharacterDetailContract.View {
             presenter.getCharacter(this)
         }
     }
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-////        setContentView(R.layout.fragment_character_detail)
-////        setSupportActionBar(findViewById(R.id.toolbar))
-////        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//
-//        presenter.getCharacter(id)
-//
-//    }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId) {
-//            android.R.id.home -> {
-//                onBackPressed()
-//                true
-//            }
-//            else -> super.onOptionsItemSelected(item)
-//        }
-//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

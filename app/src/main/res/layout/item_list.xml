@@ -16,7 +16,7 @@
         android:textSize="@dimen/text_size_large"
         android:layout_marginBottom="@dimen/margin_padding_size_xxlarge"
         app:layout_constraintVertical_chainStyle="spread_inside"
-        app:layout_constraintBottom_toTopOf="@id/description_short_tv"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         tools:text="Title"/>
@@ -30,17 +30,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         tools:text="19/01/2020"/>
-
-    <TextView
-        android:id="@+id/description_short_tv"
-        style="@style/AppTextAppearance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/margin_padding_size_small"
-        android:textSize="@dimen/text_size_medium"
-        app:layout_constraintTop_toBottomOf="@+id/title_tv"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua."/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

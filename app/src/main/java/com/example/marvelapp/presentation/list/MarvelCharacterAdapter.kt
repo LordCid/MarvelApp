@@ -54,7 +54,6 @@ class ListItemViewHolder(
             imageLoader.loadImage(character.thumbnail, character_container)
             title_tv.text = character.name
             date_tv.text = getDateFormated(character.modified)
-            description_short_tv.text = character.description
         }
     }
 
