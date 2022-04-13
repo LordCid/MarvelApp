@@ -10,5 +10,6 @@ interface CharacterDetailContract {
 
     interface Presenter {
         fun getCharacter(id: Long)
+        fun onDestroy()
     }
 }

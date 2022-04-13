@@ -10,5 +10,6 @@ interface CharacterListContract {
 
     interface Presenter {
         fun getCharacters()
+        fun onDestroy()
     }
 }

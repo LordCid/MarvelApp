@@ -58,6 +58,7 @@ class CharacterListFragment : BaseFragment(), CharacterListContract.View {
     override fun onDestroyView() {
         super.onDestroyView()
         bindingView = null
+        presenter.onDestroy()
     }
 
     private fun setOnClickListeners(){

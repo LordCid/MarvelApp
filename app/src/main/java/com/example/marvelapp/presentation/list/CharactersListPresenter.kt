@@ -10,12 +10,19 @@ class CharactersListPresenter @Inject constructor(
     private val getCharactersUseCase: GetCharactersUseCase,
     private val ioDispatcher: CoroutineDispatcher
 ) : CharacterListContract.Presenter, CoroutineScope by MainScope() {
+
+    private var job : Job? = null
+
     override fun getCharacters() {
-        launch {
+        job = launch {
             when(val result = withContext(ioDispatcher){ getCharactersUseCase() }){
                 is ResultState.Success -> view.showMarvelCharacters(result.data)
                 is ResultState.Error -> view.showError()
             }
         }
+    }
+
+    override fun onDestroy() {
+        job?.cancel()
     }
 }

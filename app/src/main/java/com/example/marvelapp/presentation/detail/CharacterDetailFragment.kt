@@ -41,6 +41,7 @@ class CharacterDetailFragment : BaseFragment(), CharacterDetailContract.View {
     override fun onDestroyView() {
         super.onDestroyView()
         bindingView = null
+        presenter.onDestroy()
     }
 
     override fun showData(character: MarvelCharacter) {
