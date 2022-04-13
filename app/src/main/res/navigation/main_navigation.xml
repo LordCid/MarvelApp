@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/nav_character_list"
         android:name="com.example.marvelapp.presentation.list.CharacterListFragment"
-        android:label=""
+        android:label="Character List"
         tools:layout="@layout/fragment_character_list">
 
         <action android:id="@+id/action_go_to_detail"
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/nav_character_detail"
         android:name="com.example.marvelapp.presentation.detail.CharacterDetailFragment"
-        android:label=""
+        android:label="Character Detail"
         tools:layout="@layout/fragment_character_detail"/>
 
 
