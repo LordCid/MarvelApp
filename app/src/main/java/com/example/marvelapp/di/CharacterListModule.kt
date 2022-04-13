@@ -1,6 +1,6 @@
 package com.example.marvelapp.di
 
-import com.example.marvelapp.presentation.list.CharacterListActivity
+import com.example.marvelapp.presentation.list.CharacterListFragment
 import com.example.marvelapp.presentation.list.CharacterListContract
 import com.example.marvelapp.presentation.list.CharactersListPresenter
 import dagger.Binds
@@ -13,5 +13,5 @@ interface CharacterListModule {
     fun bindsCharacterListPresenter(presenter: CharactersListPresenter): CharacterListContract.Presenter
 
     @Binds
-    fun bindsCharacterListView(activity: CharacterListActivity): CharacterListContract.View
+    fun bindsCharacterListView(activity: CharacterListFragment): CharacterListContract.View
 }

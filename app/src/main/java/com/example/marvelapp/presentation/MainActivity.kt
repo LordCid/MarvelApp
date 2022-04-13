@@ -15,8 +15,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindingView = ActivityMainBinding.inflate(layoutInflater)
+        setSupportActionBar(findViewById(R.id.toolbar))
         initUI()
-
         setContentView(bindingView.root)
     }
 

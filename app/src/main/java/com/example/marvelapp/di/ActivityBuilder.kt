@@ -1,8 +1,8 @@
 package com.example.marvelapp.di
 
 
-import com.example.marvelapp.presentation.detail.CharacterDetailActivity
-import com.example.marvelapp.presentation.list.CharacterListActivity
+import com.example.marvelapp.presentation.detail.CharacterDetailFragment
+import com.example.marvelapp.presentation.list.CharacterListFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -16,9 +16,9 @@ import dagger.android.ContributesAndroidInjector
 )
 interface ActivityBuilder {
     @ContributesAndroidInjector(modules = [CharacterListModule::class])
-    fun bindMainListActivity(): CharacterListActivity
+    fun bindMainListActivity(): CharacterListFragment
 
     @ContributesAndroidInjector(modules = [CharacterDetailModule::class])
-    fun bindFavoritetListActivity(): CharacterDetailActivity
+    fun bindFavoritetListActivity(): CharacterDetailFragment
 
 }
