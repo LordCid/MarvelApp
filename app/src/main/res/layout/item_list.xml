@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/margin_padding_size_small"
         android:textSize="@dimen/text_size_large"
-        android:layout_marginBottom="@dimen/margin_padding_size_xxlarge"
+        android:layout_marginBottom="@dimen/margin_padding_size_xxxlarge"
         app:layout_constraintVertical_chainStyle="spread_inside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
