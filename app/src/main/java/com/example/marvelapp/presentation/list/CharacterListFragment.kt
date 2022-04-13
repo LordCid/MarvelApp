@@ -14,7 +14,6 @@ import com.example.marvelapp.databinding.FragmentCharacterListBinding
 import com.example.marvelapp.domain.model.MarvelCharacter
 import com.example.marvelapp.presentation.common.BaseFragment
 import com.example.marvelapp.presentation.detail.ARG_CHARACTER_ID
-import com.example.marvelapp.presentation.detail.CharacterDetailFragment
 import javax.inject.Inject
 
 class CharacterListFragment : BaseFragment(), CharacterListContract.View {

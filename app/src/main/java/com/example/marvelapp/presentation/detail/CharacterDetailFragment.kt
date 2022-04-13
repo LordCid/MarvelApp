@@ -2,11 +2,9 @@ package com.example.marvelapp.presentation.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import com.example.marvelapp.R
 import com.example.marvelapp.databinding.FragmentCharacterDetailBinding
 import com.example.marvelapp.domain.model.MarvelCharacter
 import com.example.marvelapp.presentation.common.BaseFragment
