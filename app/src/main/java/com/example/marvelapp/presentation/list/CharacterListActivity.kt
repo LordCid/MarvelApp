@@ -2,7 +2,6 @@ package com.example.marvelapp.presentation.list
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.format.DateFormat
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,7 +11,7 @@ import com.example.marvelapp.domain.model.MarvelCharacter
 import com.example.marvelapp.presentation.common.BaseActivity
 import com.example.marvelapp.presentation.detail.ARG_CHARACTER_ID
 import com.example.marvelapp.presentation.detail.CharacterDetailActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_character_list.*
 import kotlinx.android.synthetic.main.appbar.*
 import java.util.*
 import javax.inject.Inject
@@ -27,7 +26,7 @@ class CharacterListActivity : BaseActivity(), CharacterListContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_character_list)
         setSupportActionBar(findViewById(R.id.toolbar))
         setUpUI()
         presenter.getCharacters()
